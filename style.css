@@ -194,6 +194,7 @@ footer {
   /* main */
   main {
     padding: 0 16px;
+    min-height: 900px;
   }
 
   .top-img-wrapper {
