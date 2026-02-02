@@ -32,6 +32,11 @@ header {
   text-align: left;
 }
 
+.header-logo-wrapper img {
+  max-width: 200px; /* 親要素の幅が上限 */
+  height: auto;    /* 縦横比を自動維持 */
+}
+
 /* リスト右寄せ */
 .header-list-wrapper ul {
   font-size: 18px;
