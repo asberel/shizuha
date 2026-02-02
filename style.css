@@ -10,7 +10,7 @@ header {
   display: flex;
   justify-content: space-between; /* 左右に振り分け */
   align-items: center;
-  padding: 16px 24px;
+  padding: 20px 192px;
   background-color: #F6F7F8;       /* ② header color */
   border-bottom: 2px solid #9B95C9; /* ③ 下線 */
 }
@@ -22,8 +22,10 @@ header {
 
 /* リスト右寄せ */
 .header-list-wrapper ul {
+  font-size: 18px;
+  font-weight: bold;
   display: flex;
-  gap: 24px;
+  gap: 36px;
 }
 
 .header-list-wrapper a {
@@ -44,7 +46,7 @@ main {
 footer {
   background-color: #333132; /* ⑥ footer color */
   color: #F6F7F8;            /* ⑦ footer font-color */
-  padding: 24px 0;
+  padding: 40px 0;
 }
 
 /* ロゴ中央揃え */
