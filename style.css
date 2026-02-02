@@ -70,6 +70,12 @@ main {
 ========================= */
 .sub-menu-wrapper {
   margin-bottom: 48px;
+  margin-left: 124px;
+  margin-right: 124px;
+  background-color: rgba(255, 255, 255, 0.88);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 /* 情報ブロック中央寄せ */
@@ -145,40 +151,83 @@ footer {
 }
 
 
+
+
+/* =========================
+  レスポンシブ（タブレット対応）
+  （〜1024px）
+========================= */
+@media screen and (max-width: 1024px) {
+  main {
+    padding: 0 64px;
+    min-height: auto;
+  }
+
+  .sub-menu-wrapper {
+    margin-left: 32px;
+    margin-right: 32px;
+    padding: 28px 24px;
+  }
+}
+
+
 /* =========================
   レスポンシブ（スマホ対応）
 ========================= */
 @media screen and (max-width: 768px) {
-
   /* header */
   header {
-    flex-direction: column; /* 縦並び */
-    gap: 12px;
+      padding: 20px 16px;
   }
 
-  .header-logo-wrapper {
-    text-align: center;
+  .header-logo-wrapper h1 {
+    margin: 0;
   }
 
   .header-list-wrapper ul {
-    justify-content: center;
-    flex-wrap: wrap; /* 要素が多くなっても折り返す */
+    margin: 0;
+    padding: 0;
+    display: flex;
     gap: 16px;
   }
 
   /* main */
   main {
-    flex: 1;          /* これが超重要 */
-    min-height: auto; /* px指定は外す */
+    padding: 0 16px;
   }
 
+  .top-img-wrapper {
+    margin-bottom: 32px;
+  }
+
+  .sub-menu-wrapper {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 32px;
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+
+  /* タイトルを縦並びに */
+  .information-title-wrapper {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .information-title-wrapper h2 {
+    font-size: 18px;
+  }
+
+  /* information 行を縦並びに */
   .information-content {
     flex-direction: column;
     gap: 8px;
+    padding: 12px 0;
   }
 
   .information-content p:first-child {
     min-width: auto;
+    font-size: 13px;
   }
 
   /* footer */
