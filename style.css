@@ -1,7 +1,53 @@
 body {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  margin: 0;
 }
 
-h1 {
-    font-size: 36px;
+/* =========================
+  header
+========================= */
+header {
+  display: flex;
+  justify-content: space-between; /* 左右に振り分け */
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #F6F7F8;       /* ② header color */
+  border-bottom: 2px solid #9B95C9; /* ③ 下線 */
+}
+
+/* ロゴ左寄せ */
+.header-logo-wrapper {
+  text-align: left;
+}
+
+/* リスト右寄せ */
+.header-list-wrapper ul {
+  display: flex;
+  gap: 24px;
+}
+
+.header-list-wrapper a {
+  color: #333132;
+  text-decoration: none;
+}
+
+/* =========================
+  main
+========================= */
+main {
+  min-height: 1000px; /* ④ 1000pxのスペース確保 */
+}
+
+/* =========================
+  footer
+========================= */
+footer {
+  background-color: #333132; /* ⑥ footer color */
+  color: #F6F7F8;            /* ⑦ footer font-color */
+  padding: 24px 0;
+}
+
+/* ロゴ中央揃え */
+.footer-logo-wrapper {
+  text-align: center; /* ⑤ 中央揃え */
 }
