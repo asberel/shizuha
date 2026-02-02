@@ -51,3 +51,37 @@ footer {
 .footer-logo-wrapper {
   text-align: center; /* ⑤ 中央揃え */
 }
+
+
+/* =========================
+  レスポンシブ（スマホ対応）
+========================= */
+@media screen and (max-width: 768px) {
+
+  /* header */
+  header {
+    flex-direction: column; /* 縦並び */
+    gap: 12px;
+  }
+
+  .header-logo-wrapper {
+    text-align: center;
+  }
+
+  .header-list-wrapper ul {
+    justify-content: center;
+    flex-wrap: wrap; /* 要素が多くなっても折り返す */
+    gap: 16px;
+  }
+
+  /* main */
+main {
+  flex: 1;          /* これが超重要 */
+  min-height: auto; /* px指定は外す */
+}
+
+  /* footer */
+  .footer-logo-wrapper {
+    font-size: 14px;
+  }
+}
