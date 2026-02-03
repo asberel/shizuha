@@ -136,10 +136,6 @@ main {
   text-decoration: none;
 }
 
-.information-content a:hover {
-  text-decoration: underline;
-}
-
 /* =========================
   product section
 ========================= */
@@ -171,10 +167,6 @@ main {
   text-decoration: none;
 }
 
-.product-content h3 a:hover {
-  text-decoration: underline;
-}
-
 /* 画像 */
 .product-content img {
   width: 100%;
@@ -190,6 +182,105 @@ main {
 }
 
 /* =========================
+  organization section
+========================= */
+
+.organization-contents-wrapper {
+  position: relative;
+  max-width: 720px;
+  margin: 72px auto;
+  padding-left: 32px;
+}
+
+/* 縦ライン（歴史の軸） */
+.organization-contents-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 2px;
+  height: 100%;
+  background-color: #9B95C9;
+}
+
+/* 各年表アイテム */
+.organization-content {
+  position: relative;
+  background-color: rgba(155, 149, 201, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+/* 丸いマーカー */
+.organization-content::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  background-color: #596AE0;
+  border-radius: 50%;
+}
+
+/* 偶数行でアクセント */
+.organization-content:nth-child(even) {
+  background-color: rgba(255, 169, 122, 0.15);
+}
+
+.organization-content:nth-child(even)::before {
+  background-color: #FFA97A;
+}
+
+/* 日付 */
+.organization-content p:first-child {
+  font-size: 14px;
+  font-weight: bold;
+  color: #596AE0;
+  margin-bottom: 8px;
+}
+
+/* テキスト */
+.organization-content a {
+  color: #333132;
+  text-decoration: none;
+}
+
+/* ラッパーに relative を再確認 */
+.organization-contents-wrapper {
+  position: relative;
+}
+
+/* NEW ラベル */
+.organization-contents-wrapper::after {
+  content: "NEW";
+  position: absolute;
+  top: -28px;
+  left: -6px;
+  background-color: #FFA97A;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* PAST ラベル */
+.organization-contents-wrapper .organization-content:last-child::after {
+  content: "PAST";
+  position: absolute;
+  bottom: -24px;
+  left: -32px;
+  background-color: #596AE0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* =========================
   footer
 ========================= */
 footer {
@@ -202,6 +293,11 @@ footer {
 .footer-logo-wrapper {
   text-align: center; /* ⑤ 中央揃え */
 }
+
+
+
+
+
 
 
 
@@ -222,6 +318,12 @@ footer {
     padding: 28px 24px;
   }
 }
+
+
+
+
+
+
 
 
 /* =========================
@@ -289,6 +391,14 @@ footer {
   .information-content p:first-child {
     min-width: auto;
     font-size: 13px;
+  }
+
+    .organization-contents-wrapper {
+    padding-left: 24px;
+  }
+
+  .organization-content::before {
+    left: -24px;
   }
 
   /* footer */
