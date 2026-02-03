@@ -302,6 +302,7 @@ a:hover img {
 ========================= */
 #loading {
   position: fixed;
+  flex-direction: column;
   top: 0;
   left: 0;
   width: 100%;
@@ -310,6 +311,7 @@ a:hover img {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 40px; /* ロゴとゲージの間を広げる */
   z-index: 9999;
   transition: opacity 0.6s ease;
 }
@@ -318,7 +320,31 @@ a:hover img {
   width: 800px;
 }
 
-/* 非表示用 */
+/* ゲージ枠 */
+.loading-bar {
+  width: 600px;   /* ← 横幅を大きく */
+  height: 12px;   /* ← 太く */
+  background-color: rgba(155, 149, 201, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* ゲージ本体 */
+.loading-bar-inner {
+  width: 0%;
+  height: 100%;
+  background-color: #9B95C9;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+
+  background: linear-gradient(
+    90deg,
+    #9B95C9,
+    #596AE0
+  );
+}
+
+/* 非表示 */
 #loading.is-hidden {
   opacity: 0;
   pointer-events: none;

@@ -15,6 +15,9 @@
   <!-- loading（サイトを表示する前に、ロゴを表示する） -->
   <div id="loading">
     <img src="img/png_asyk-chclt-logo.png" alt="Asayake Chocolat ロゴ">
+    <div class="loading-bar">
+      <div class="loading-bar-inner"></div>
+    </div>
   </div>
 
   <header>
@@ -132,12 +135,32 @@
 
   <!-- script -->
   <script>
-    window.addEventListener("load", () => {
-      const loading = document.getElementById("loading");
+    const bar = document.querySelector(".loading-bar-inner");
+    let progress = 0;
 
+    // 疑似的にロード進行（〜90%）
+    const loadingInterval = setInterval(() => {
+      if (progress < 90) {
+        progress += Math.random() * 10;
+        bar.style.width = `${Math.min(progress, 90)}%`;
+      }
+    }, 200);
+
+    window.addEventListener("load", () => {
+      clearInterval(loadingInterval);
+
+      // 一気に100%へ
+      bar.style.width = "100%";
+
+      // 少し待ってローディングを消す
       setTimeout(() => {
+        const loading = document.getElementById("loading");
         loading.classList.add("is-hidden");
-      }, 1200); // 表示時間（ms）
+
+        setTimeout(() => {
+          loading.remove();
+        }, 600);
+      }, 500);
     });
   </script>
 </body>
