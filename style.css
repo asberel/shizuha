@@ -140,6 +140,54 @@ main {
   text-decoration: underline;
 }
 
+/* =========================
+  product section
+========================= */
+
+/* 全体ラッパー */
+.product-contents-wrapper {
+  max-height: 700px;          /* ③ 高さを700pxに制限 */
+  overflow-y: auto;           /* はみ出たら縦スクロール */
+  max-width: auto;
+  margin: 0 auto;             /* 中央寄せ */
+  padding-right: 8px;         /* スクロールバー対策 */
+  padding-top: 24px;
+}
+
+/* 各プロダクト */
+.product-content {
+  text-align: center;         /* ① 中央揃え */
+  margin-bottom: 108px;
+}
+
+/* タイトル */
+.product-content h3 {
+  font-size: 24px;          /* ② 少し大きめ */
+  margin-bottom: 16px;
+}
+
+.product-content h3 a {
+  color: #333132;
+  text-decoration: none;
+}
+
+.product-content h3 a:hover {
+  text-decoration: underline;
+}
+
+/* 画像 */
+.product-content img {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 16px;
+  display: block;
+}
+
+/* テキスト */
+.product-content p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
 
 /* =========================
   footer
