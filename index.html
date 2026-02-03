@@ -12,6 +12,11 @@
   <title>アサヤケショコラ公式</title>
 </head>
 <body>
+  <!-- loading（サイトを表示する前に、ロゴを表示する） -->
+  <div id="loading">
+    <img src="img/png_asyk-chclt-logo.png" alt="Asayake Chocolat ロゴ">
+  </div>
+
   <header>
     <!-- header nigi -->
     <div class="header-logo-wrapper">
@@ -124,5 +129,16 @@
     </div>
   </footer>
   <!-- footer end -->
+
+  <!-- script -->
+  <script>
+    window.addEventListener("load", () => {
+      const loading = document.getElementById("loading");
+
+      setTimeout(() => {
+        loading.classList.add("is-hidden");
+      }, 1200); // 表示時間（ms）
+    });
+  </script>
 </body>
 </html>
