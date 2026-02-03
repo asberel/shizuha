@@ -191,7 +191,8 @@ main {
 .organization-contents-wrapper h3 {
   font-size: 20px;
   font-weight: 600;
-  margin-top: 12px;
+  margin-top: 16px;
+  margin-bottom: 4px;
 }
 
 /* 各年表アイテム */
