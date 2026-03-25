@@ -64,6 +64,17 @@ main {
   display: block;
 }
 
+/* =========================
+  mission section
+========================= */
+.mission-wrapper {
+  margin-bottom: 48px;
+}
+
+.mission-wrapper img {
+  display: block;
+  width: 100%;
+}
 
 /* =========================
   sub menu（情報エリア）
