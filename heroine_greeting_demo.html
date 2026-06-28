@@ -1,0 +1,164 @@
+
+<style>
+  .demo-wrap {
+    padding: 1rem 0;
+    font-family: var(--font-sans);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .time-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .time-tab { padding: 6px 14px; border: 0.5px solid var(--color-border-secondary); border-radius: 20px; font-size: 13px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); transition: all 0.2s; }
+  .time-tab.active { background: var(--color-background-tertiary); color: var(--color-text-primary); border-color: var(--color-border-primary); font-weight: 500; }
+  .scene { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; position: relative; width: 1200px; min-height: 520px; display: flex; flex-direction: column; justify-content: flex-end; transition: background 0.6s; }
+  .scene-bg { position: absolute; inset: 0; transition: opacity 0.5s; }
+  .heroine-area { position: absolute; left: 50%; transform: translateX(-50%); width: 300px; height: 820px; top: 12px; display: flex; align-items: flex-end; justify-content: center; }
+
+  .speech-bubble { 
+    position: relative;
+    z-index: 2;
+    margin: 0 6rem 1.5rem; 
+    background: rgba(255,255,255,0.92); border-radius: 16px; 
+    padding: 20px 40px;
+    border: 0.5px solid rgba(0,0,0,0.08); 
+  }
+
+  .bubble-name { font-size: 16px; color: #c2697a; font-weight: 500; letter-spacing: 0.5px; padding-bottom: 8px; }
+  .bubble-text { font-size: 16px; color: #333; line-height: 1.6; }
+  .time-info { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; text-align: right; }
+  .now-badge { display: inline-block; background: #f9e0e4; color: #c2697a; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+  .char-tabs { display: flex; gap: 8px; margin-bottom: 1rem; }
+  .char-tab { padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); font-size: 12px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); }
+  .char-tab.active { background: #f9e0e4; color: #c2697a; border-color: #e8a0ab; font-weight: 500; }
+</style>
+
+
+
+
+<div class="demo-wrap">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+    <div class="char-tabs" id="charTabs"></div>
+    <div class="time-info" id="timeInfo"></div>
+  </div>
+
+  <div class="time-tabs" id="timeTabs"></div>
+
+  <div class="scene" id="scene">
+    <div class="scene-bg" id="sceneBg"></div>
+    <div class="heroine-area">
+      <img id="heroineImg"
+        src="img/characters/shirogane laugh_foolishly.png"
+        alt="ヒロイン"
+        style="height: 984px; object-fit: contain; display: block;" />
+    </div>
+    <div class="speech-bubble">
+      <div class="bubble-name" id="bubbleName"></div>
+      <div class="bubble-text" id="bubbleText"></div>
+      <div class="bubble-sub" id="bubbleSub"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+const characters = [
+  { id: 'gin', name: '銀髪の少女', color: '#7baad4', faceColor: '#a8c8e8' },
+  // { id: 'hana', name: '花宮 さくら', color: '#d47b9a', faceColor: '#e8a8bc' },
+  // { id: 'yuki', name: '雪城 凛', color: '#7bb8a0', faceColor: '#a8d4c0' },
+];
+
+const timeSlots = [
+  { id: 'dawn', label: '早朝', icon: '🌄', hours: [5,6], bg: 'linear-gradient(180deg,#f4b8a8 0%,#fde8d0 60%,#c8daf0 100%)' },
+  { id: 'morning', label: '朝', icon: '☀️', hours: [7,8,9,10], bg: 'linear-gradient(180deg,#b8d4f0 0%,#dceeff 50%,#f5f0e8 100%)' },
+  { id: 'noon', label: '昼', icon: '🌤', hours: [11,12,13], bg: 'linear-gradient(180deg,#a0c4f0 0%,#c8dff8 50%,#e8f4e0 100%)' },
+  { id: 'afternoon', label: '夕方', icon: '🌇', hours: [14,15,16,17], bg: 'linear-gradient(180deg,#e8b870 0%,#f0c888 50%,#f8ddb0 100%)' },
+  { id: 'evening', label: '夜', icon: '🌙', hours: [18,19,20,21], bg: 'linear-gradient(180deg,#2a3560 0%,#3c4880 50%,#6878b0 100%)' },
+  { id: 'night', label: '深夜', icon: '✨', hours: [22,23,0,1,2,3,4], bg: 'linear-gradient(180deg,#0a0e28 0%,#1a2050 50%,#2c3468 100%)' },
+];
+
+const scripts = {
+  gin: {
+    dawn:      { text: 'もう起きたの？えらいね。\n……わたしも今起きたばかりだけど。' },
+    morning:   { text: 'おはよう！今日も一緒に頑張ろうね。\n朝ごはん、ちゃんと食べた？' },
+    noon:      { text: 'お昼だよ。ちゃんと休んでる？\n無理しちゃダメだからね。' },
+    afternoon: { text: 'もうすぐ夕方……あと少しだよ。\nわたし、ずっと応援してるから。' },
+    evening:   { text: 'お疲れさま。今日もよく頑張ったね。\n……一緒にいてもいい？' },
+    night:     { text: 'まだ起きてるの？\n……あなたのこと、心配なんだから。' },
+  },
+  // yuki: {
+  //   dawn:      { text: '……もう起きているの。\n奇遇ね、わたしも今ちょうど目が覚めたところ。', sub: '（静かに窓の外を眺めている）' },
+  //   morning:   { text: 'おはよう。\n朝の空気は清々しいわね。', sub: '（すっと背筋を伸ばして立っている）' },
+  //   noon:      { text: 'もう昼か。時間は早いわね。\n……少し休んだほうがいいと思う。', sub: '（静かにこちらを見てくる）' },
+  //   afternoon: { text: '夕方になってきたわね。\n今日はどうだった？聞かせてくれる？', sub: '（窓辺に腰かけて待っている）' },
+  //   evening:   { text: 'お疲れ様。\n……頑張ったこと、わかってるわよ。', sub: '（珍しくやわらかく微笑む）' },
+  //   night:     { text: 'まだ起きているの？\n…少し、隣にいてあげる。', sub: '（静かに座ってくれる）' },
+  // },
+};
+
+let currentChar = 'gin';
+let currentSlot = '';
+
+function getCurrentSlot() {
+  const h = new Date().getHours();
+  return timeSlots.find(s => s.hours.includes(h))?.id || 'morning';
+}
+
+function render() {
+  const char = characters.find(c => c.id === currentChar);
+  const slot = timeSlots.find(s => s.id === currentSlot);
+  const sc = scripts[currentChar][currentSlot];
+
+  document.getElementById('sceneBg').style.background = slot.bg;
+  document.getElementById('bubbleName').textContent = char.name;
+  document.getElementById('bubbleText').textContent = sc.text;
+  document.getElementById('bubbleSub').textContent = sc.sub;
+
+  document.querySelectorAll('.time-tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.slot === currentSlot);
+  });
+  document.querySelectorAll('.char-tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.char === currentChar);
+  });
+
+  const now = getCurrentSlot();
+  const h = new Date().getHours();
+  const m = String(new Date().getMinutes()).padStart(2,'0');
+  // document.getElementById('timeInfo').innerHTML =
+  //   `現在 ${h}:${m}${currentSlot === now ? '<span class="now-badge">現在の時間帯</span>' : ''}`;
+}
+
+function buildTabs() {
+  const timeTabs = document.getElementById('timeTabs');
+  timeSlots.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'time-tab';
+    btn.dataset.slot = s.id;
+    btn.textContent = `${s.icon} ${s.label}`;
+    btn.onclick = () => { currentSlot = s.id; render(); };
+    timeTabs.appendChild(btn);
+  });
+
+  const charTabs = document.getElementById('charTabs');
+  characters.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'char-tab';
+    btn.dataset.char = c.id;
+    btn.textContent = c.name.split(' ')[0];
+    btn.onclick = () => { currentChar = c.id; render(); };
+    charTabs.appendChild(btn);
+  });
+}
+
+buildTabs();
+currentSlot = getCurrentSlot();
+render();
+</script>
