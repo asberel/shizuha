@@ -11,12 +11,12 @@
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
     visibility: hidden; /* NOTE: デバッグ用なので、本番では非表示にしている */
   }
 
   .time-tab {
-    padding: 6px 14px;
+    /* padding: 6px 14px; */
     border: 0.5px solid var(--color-border-secondary);
     border-radius: 20px; font-size: 13px;
     cursor: pointer;
@@ -38,7 +38,7 @@
     overflow: hidden;
     position: relative;
     width: 1200px;
-    min-height: 520px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -57,7 +57,7 @@
     transform: translateX(-50%);
     width: 300px;
     height: 820px;
-    top: 12px;
+    top: 260px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -73,7 +73,7 @@
   }
 
   .bubble-name {
-    font-size: 16px;
+    font-size: 20px;
     color: #c2697a;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -81,7 +81,7 @@
   }
 
   .bubble-text {
-    font-size: 16px;
+    font-size: 22px;
     color: #333;
     line-height: 1.6;
   }
@@ -145,7 +145,7 @@
       <img id="heroineImg"
         src="img/characters/gin calm.png"
         alt="ヒロイン"
-        style="height: 984px; object-fit: contain; display: block;" />
+        style="height: 1244px; object-fit: contain; display: block;" />
     </div>
     <div class="speech-bubble">
       <div class="bubble-name" id="bubbleName"></div>

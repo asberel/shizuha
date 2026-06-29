@@ -27,11 +27,6 @@ body {
   background-attachment: fixed;
 }
 
-img {
-  max-width: 100%;  /* 親要素の幅を超えない */
-  height: auto;     /* 縦横比を維持 */
-}
-
 /* =========================
   header
 ========================= */
@@ -78,13 +73,15 @@ main {
 }
 
 .top-img-wrapper {
-  padding-top: 40px;
+  padding-top: 64px;
   box-shadow: var(--shadow);
   margin-bottom: 64px;
 }
 
 .top-img-wrapper img {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /* =========================
