@@ -141,7 +141,7 @@
     <div class="scene-bg" id="sceneBg"></div>
     <div class="heroine-area">
       <img id="heroineImg"
-        src="img/characters/shirogane laugh_foolishly.png"
+        src="img/characters/gin calm.png"
         alt="ヒロイン"
         style="height: 984px; object-fit: contain; display: block;" />
     </div>
@@ -159,9 +159,18 @@
 
 <script>
 const characters = [
-  { id: 'gin', name: '銀髪の少女', color: '#7baad4', faceColor: '#a8c8e8' },
-  // { id: 'hana', name: '花宮 さくら', color: '#d47b9a', faceColor: '#e8a8bc' },
-  // { id: 'yuki', name: '雪城 凛', color: '#7bb8a0', faceColor: '#a8d4c0' },
+  { 
+    id: 'gin', 
+    name: '銀髪の少女',
+    img: {
+      dawn:      'img/characters/gin sweat.png',
+      morning:   'img/characters/gin smile.png',
+      noon:      'img/characters/gin laugh_foolishly.png',
+      afternoon: 'img/characters/gin calm.png',
+      evening:   'img/characters/gin mesugaki_openmouth.png',
+      night:     'img/characters/gin emotionless.png',
+    }
+  },
 ];
 
 const timeSlots = [
@@ -206,6 +215,7 @@ function render() {
   const sc = scripts[currentChar][currentSlot];
 
   document.getElementById('sceneBg').style.background = slot.bg;
+  document.getElementById('heroineImg').src = char.img[currentSlot] ?? char.img.morning;
   document.getElementById('bubbleName').textContent = char.name;
   document.getElementById('bubbleText').textContent = sc.text;
   document.getElementById('bubbleSub').textContent = sc.sub;
