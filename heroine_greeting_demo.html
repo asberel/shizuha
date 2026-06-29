@@ -12,6 +12,7 @@
     gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 1.5rem;
+    visibility: hidden; /* NOTE: デバッグ用なので、本番では非表示にしている */
   }
 
   .time-tab {
@@ -106,6 +107,7 @@
     display: flex;
     gap: 8px;
     margin-bottom: 1rem;
+    visibility: hidden; /* NOTE: デバッグ用なので、本番では非表示にしている */
   }
 
   .char-tab {
@@ -191,14 +193,6 @@ const scripts = {
     evening:   { text: 'お疲れさま。もう夜ごはんは食べた？\n また明日も楽しいことがあると良いなぁ' },
     night:     { text: 'あれ？まだ起きてたんだ。\n …そっか………… \n あなたには、私が見えてるんだもんね' },
   },
-  // yuki: {
-  //   dawn:      { text: '……もう起きているの。\n奇遇ね、わたしも今ちょうど目が覚めたところ。', sub: '（静かに窓の外を眺めている）' },
-  //   morning:   { text: 'おはよう。\n朝の空気は清々しいわね。', sub: '（すっと背筋を伸ばして立っている）' },
-  //   noon:      { text: 'もう昼か。時間は早いわね。\n……少し休んだほうがいいと思う。', sub: '（静かにこちらを見てくる）' },
-  //   afternoon: { text: '夕方になってきたわね。\n今日はどうだった？聞かせてくれる？', sub: '（窓辺に腰かけて待っている）' },
-  //   evening:   { text: 'お疲れ様。\n……頑張ったこと、わかってるわよ。', sub: '（珍しくやわらかく微笑む）' },
-  //   night:     { text: 'まだ起きているの？\n…少し、隣にいてあげる。', sub: '（静かに座ってくれる）' },
-  // },
 };
 
 let currentChar = 'gin';
