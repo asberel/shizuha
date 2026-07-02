@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>九月に解ける、暑中と銀。特設ページ</title>
+<style>
+  /* =====================
+     TOKENS
+  ===================== */
+  :root {
+    --bg:       #f7f2e8;
+    --bg2:      #f0e9d8;
+    --surface:  #fcf9f2;
+    --border:   #ddd0b0;
+    --text:     #4a4030;
+    --muted:    #9a8a68;
+    --accent:   #8a6a3a;
+    --danger:   #cc2233;
+    --font-main: 'Hiragino Mincho ProN', 'Yu Mincho', 'Georgia', serif;
+    --font-sub:  'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  }
+
+  /* =====================
+     RESET / BASE
+  ===================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+  body.darkened {
+    background: #100d14;
+    color: #d8d0e0;
+    --bg: #100d14;
+    --surface: #1a1622;
+    --border: #332b44;
+    --text: #d8d0e0;
+    --muted: #8a7fa0;
+    --accent: #b89adc;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* =====================
+     UTILITIES
+  ===================== */
+  .center { text-align: center; }
+  .muted  { color: var(--muted); }
+
+  /* =====================
+     SECTION BASE
+  ===================== */
+  section {
+    padding: 20px 24px;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* thin horizontal rule between sections */
+  .divider {
+    width: 1px;
+    height: 60px;
+    background: var(--border);
+    margin: 0 auto;
+  }
+
+  /* =====================
+     01  FIRST VIEW
+  ===================== */
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-logo {
+    width: min(240px, 70vw);
+    margin-bottom: 24px;
+    /* ロゴなしの場合はこの要素ごと削除してOK */
+  }
+
+  .hero-copy {
+    font-family: var(--font-sub);
+    font-size: clamp(18px, 4vw, 26px);
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-align: center;
+    font-family: var(--font-sub);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    animation: fadeUpDown 2.4s ease-in-out infinite;
+  }
+
+  @keyframes fadeUpDown {
+    0%,100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+    50%      { opacity: 0.8; transform: translateX(-50%) translateY(-6px); }
+  }
+
+  /* =====================
+     02  INTRO（自分事化）
+  ===================== */
+  #intro p {
+    font-size: clamp(14px, 2.5vw, 17px);
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 1.4em;
+  }
+  #intro .highlight {
+    color: var(--accent);
+  }
+
+  /* =====================
+     03  SPEC
+  ===================== */
+  #spec {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  .spec-item {
+    background: var(--surface);
+    padding: 24px 16px;
+    text-align: center;
+  }
+  .spec-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    margin-bottom: 8px;
+  }
+  .spec-value {
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+  .spec-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  /* =====================
+     04  WORLD（世界観）
+  ===================== */
+  #world .scene-quote {
+    border-left: 1px solid var(--accent);
+    padding-left: 20px;
+    margin: 40px 0;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* サンプル画像プレースホルダー */
+  .sample-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 32px 0;
+    width: 120%;
+    margin-left: -10%;
+  }
+  @media (min-width: 660px) {
+    .sample-grid {
+      width: 120%;
+      margin-left: -10%;
+    }
+  }
+  .sample-placeholder {
+    aspect-ratio: 16 / 9;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    border-radius: 2px;
+  }
+
+  /* =====================
+     05  MISLEAD
+  ===================== */
+  #mislead {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  /* 立ち絵（大）プレースホルダー */
+  .heroine-large {
+    width: min(336px, 84vw);
+    aspect-ratio: 1 / 2;
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin: 0 auto 48px;
+  }
+  .heroine-large::after {
+    white-space: pre;
+    text-align: center;
+  }
+
+  .mislead-line1 {
+    font-size: clamp(15px, 3vw, 20px);
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .mislead-line2 {
+    font-family: var(--font-sub);
+    font-size: clamp(18px, 4vw, 26px);
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  /* =====================
+     07  PART2 TEASER
+  ===================== */
+  #part2 {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+  .part-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    margin-bottom: 16px;
+  }
+  .part2-copy {
+    font-size: clamp(14px, 3vw, 18px);
+    letter-spacing: 0.12em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .part2-hint {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 40px;
+  }
+
+  /* =====================
+     08  CTA（購入ボタン＝豹変演出）
+  ===================== */
+   #cta {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+
+  /* 立ち絵：通常（上半身中心のトリミング表示） */
+  .cta-heroine {
+    /* width: min(240px, 60vw); */
+    aspect-ratio: 3 / 4;
+    margin: 0 auto 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .cta-heroine img {
+    height: 1100px;
+  }
+  /* ↓通常立ち絵 差し替え用 */
+  .cta-face-normal,
+  .cta-face-scary {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: opacity 0.08s;
+  }
+  .cta-face-scary { opacity: 0; }
+  .cta-heroine.triggered .cta-face-normal { opacity: 0; }
+  .cta-heroine.triggered .cta-face-scary  { opacity: 1; }
+
+  .cta-pre {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    margin-bottom: 20px;
+  }
+
+  .buy-btn {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--font-main);
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    padding: 16px 56px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .buy-btn:hover { background: #ece0c8; }
+  .buy-btn.scary {
+    border-color: var(--danger);
+    color: #ffffff;
+    background: #1a0000;
+  }
+  .buy-btn.going { opacity: 0.4; pointer-events: none; }
+  .buy-btn.scary { pointer-events: none; }
+
+  .cta-message {
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: #cc3333;
+    min-height: 22px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cta-message.show { opacity: 1; }
+
+  /* flash overlay */
+  #flash-overlay {
+    position: fixed;
+    inset: 0;
+    background: #cc0000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    transition: opacity 0.05s;
+  }
+  #flash-overlay.on { opacity: 0.06; }
+
+  /* =====================
+     FOOTER
+  ===================== */
+  footer {
+    padding: 14px 24px 14px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    border-top: 1px solid var(--border);
+  }
+
+  /* =====================
+     SOUND MODAL
+  ===================== */
+  #sound-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10, 8, 16, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 40px 32px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .modal-title {
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .modal-body {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--font-sub);
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .modal-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .modal-btn {
+    flex: 1;
+    max-width: 140px;
+    padding: 10px 0;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: var(--font-sub);
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .modal-btn.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .modal-btn:hover { opacity: 0.8; }
+
+  /* =====================
+     SCROLL FADE-IN
+  ===================== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* =====================
+     RESPONSIVE
+  ===================== */
+  @media (max-width: 680px) {
+    .cta-heroine img {
+      height: 800px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .spec-grid { grid-template-columns: 1fr; }
+    .cta-heroine img {
+      height: 720px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ① 音の注意モーダル -->
+<div id="sound-modal">
+  <div class="modal-box">
+    <div class="modal-icon">🔔</div>
+    <p class="modal-title">音が鳴ります</p>
+    <p class="modal-body">このページでは一部の演出で音声が再生されます。<br>音量にご注意ください。</p>
+    <div class="modal-btns">
+      <button class="modal-btn" id="modal-no">消音で続ける</button>
+      <button class="modal-btn primary" id="modal-yes">わかった</button>
+    </div>
+  </div>
+</div>
+
+<div id="flash-overlay"></div>
+
+<!-- =============================
+     01  FIRST VIEW
+============================= -->
+<section id="hero">
+  <img class="hero-logo" src="logo_nine_srgn.png" alt="タイトルロゴ">
+
+  <img src="gin calm.png" alt="銀髪の少女">  
+
+  <p class="hero-copy">─あなたは、おぼえていますか？</p>
+  <p class="hero-sub">九月に解ける、暑中と銀。 第一部</p>
+
+  <span class="scroll-hint">scroll</span>
+</section>
+
+<!-- =============================
+     02  INTRO（自分事化）
+============================= -->
+<div class="divider"></div>
+<div class="divider"></div>
+<section id="intro" class="fade-in">
+  <p>ある夏の日、帰郷した<span class="highlight">あなた</span>は少女と出会った。</p>
+  <p>陽炎が揺れる道を歩く彼女は、</pp>
+  <p>猛暑なのに厚手の上着を着ていて……</p>
+  <p>─右手は、いつも背中に隠れていた。</p>
+  <p>あなたと少女は初対面のはず。</p>
+  <p>だけど、少女はあなたの顔を見て言った。</p>
+  <p style="color: var(--accent); letter-spacing: 0.12em;">「覚えてないの？」</p>
+</section>
+
+<!-- =============================
+     03  SPEC
+============================= -->
+<div class="divider"></div>
+<section id="spec" class="fade-in">
+  <p class="spec-title center">── 作品情報 ──</p>
+  <div class="spec-grid">
+    <div class="spec-item">
+      <p class="spec-label">プレイ時間</p>
+      <p class="spec-value">40分〜1時間</p>
+    </div>
+    <div class="spec-item">
+      <p class="spec-label">攻略ヒロイン</p>
+      <p class="spec-value">1ルート</p>
+    </div>
+    <div class="spec-item">
+      <p class="spec-label">作品構成</p>
+      <p class="spec-value">二部作</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================
+     04  WORLD（世界観・キャラ）
+============================= -->
+<div class="divider"></div>
+<section id="world" class="fade-in">
+
+  <!-- 【差し替え】サンプル画像2〜3枚 -->
+  <div class="sample-grid">
+    <img class="sample-placeholder" src="01_still_emi.jpg">
+    <img class="sample-placeholder" src="02_still_bbc.jpg">
+  </div>
+
+  <blockquote class="scene-quote">
+    「……ずっと、待ってたんだよ」
+  </blockquote>
+
+  <p style="font-size:14px; color: var(--muted); letter-spacing:0.06em;">
+    人里離れた田舎。彼女と歩く、静かな夏。<br>
+    どこか懐かしい、穏やかな時間。
+  </p>
+</section>
+
+<!-- =============================
+     05  MISLEAD（ミスリード仕掛け）
+============================= -->
+<div class="divider"></div>
+<section id="mislead" class="fade-in">
+
+  <img src="gin laugh_foolishly.png" alt="銀髪の少女">
+
+  <p class="mislead-line1">夏なのに、厚手の上着。</p>
+  <p class="mislead-line1">右手は、いつも見えない。</p>
+  <p class="mislead-line2">─何を、想像した？</p>
+</section>
+
+<!-- =============================
+     07  PART2 TEASER
+============================= -->
+<div class="divider"></div>
+<section id="part2" class="fade-in">
+  <p class="part-label">COMING SOON</p>
+  <p class="part2-copy">第一部・序章、配信中。</p>
+  <p class="part2-hint">右手の答えは、第二部・完結編で。</p>
+</section>
+
+<!-- =============================
+     08  CTA（購入ボタン＋演出）
+============================= -->
+<div class="divider divider-short"></div>
+<section id="cta">
+
+  <div class="cta-heroine" id="ctaHeroine">
+    <img class="cta-face-normal" src="gin smile_relief.png" alt="normal">
+    <img class="cta-face-scary" src="gin not_highlight.png" alt="scary">
+  </div>
+
+  <p class="cta-pre">── 第一部、配信中 ──</p>
+
+  <!-- 【差し替え】href を DLSite の商品URLに変える -->
+  <button class="buy-btn" id="buyBtn" data-url="https://www.dlsite.com/home/work/=/product_id/RJ01623153.html">
+    購入ページへ
+  </button>
+
+  <p class="cta-message" id="ctaMessage">…どうして忘れちゃったの？</p>
+  <audio id="ctaVoice" src="117.wav" preload="auto"></audio>
+</section>
+
+<!-- =============================
+     FOOTER
+============================= -->
+<footer>
+  <p>© 2026 Asayakechocolat. All rights reserved.</p>
+</footer>
+
+
+
+<script>
+  /* ---------- ① 音の注意モーダル ---------- */
+  const soundModal = document.getElementById('sound-modal');
+  const modalYes   = document.getElementById('modal-yes');
+  const modalNo    = document.getElementById('modal-no');
+
+  function closeModal(mute) {
+    soundModal.style.display = 'none';
+    if (mute && ctaVoice) ctaVoice.muted = true;
+  }
+
+  modalYes.addEventListener('click', () => closeModal(false));
+  modalNo.addEventListener('click',  () => closeModal(true));
+
+  /* ---------- scroll fade-in ---------- */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  /* ---------- 購入ボタン豹変演出 ---------- */
+  const buyBtn       = document.getElementById('buyBtn');
+  const ctaHeroine   = document.getElementById('ctaHeroine');
+  const ctaMessage   = document.getElementById('ctaMessage');
+  const ctaVoice      = document.getElementById('ctaVoice');
+  const flashOverlay = document.getElementById('flash-overlay');
+  let triggered = false;
+
+  /* ボイスの長さ（秒）。ファイル差し替え後はこの値を実際の長さに合わせる */
+  const VOICE_DURATION_MS = 5000;
+
+  function triggerScary() {
+    if (triggered) return;
+    triggered = true;
+  
+    /* ② スクロールをロック（上に戻れなくする） */
+    const scrollY = window.scrollY;
+    document.body.style.position   = 'fixed';
+    document.body.style.top        = `-${scrollY}px`;
+    document.body.style.width      = '100%';
+    document.body.style.overflowY  = 'scroll';
+
+    /* クリック直後：フラッシュのみ */
+    flashOverlay.classList.add('on');
+    setTimeout(() => flashOverlay.classList.remove('on'), 120);
+
+    /* 0.5秒後：表情豹変＋ボタンテキスト変更＋ボイス再生開始＋背景暗転 */
+    setTimeout(() => {
+      ctaHeroine.classList.add('triggered');
+      buyBtn.classList.add('scary');
+      buyBtn.textContent = '…ちゃんと、思い出してね…';
+      ctaMessage.classList.add('show');
+      document.body.classList.add('darkened');
+
+      /* ボイス再生（再生中は他の操作を受け付けない） */
+      /* 音声ファイルが未設置・読み込み失敗の場合は即座にフォールバックへ */
+      let voiceAvailable = false;
+      if (ctaVoice) {
+        const srcAttr = ctaVoice.getAttribute('src');
+        voiceAvailable = !!srcAttr && srcAttr.trim() !== '';
+      }
+
+      let resolved = false;
+      const proceed = () => {
+        if (resolved) return;
+        resolved = true;
+        buyBtn.classList.add('going');
+        const url = buyBtn.dataset.url;
+        if (url) {
+          window.location.href = url;
+        }
+      };
+
+      if (voiceAvailable) {
+        ctaVoice.currentTime = 0;
+        ctaVoice.addEventListener('ended', proceed, { once: true });
+        ctaVoice.addEventListener('error', proceed, { once: true });
+        ctaVoice.play().catch(() => proceed());
+      }
+
+      /* 再生に失敗した場合や、音声が無い環境でも進めるためのフォールバック */
+      setTimeout(proceed, VOICE_DURATION_MS);
+    }, 500);
+  }
+
+  /* PC・スマホ共通：クリック / タップで発火 */
+  buyBtn.addEventListener('click', e => {
+    e.preventDefault();
+    triggerScary();
+  });
+</script>
+
+</body>
+</html>
