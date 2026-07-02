@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLK4G447DZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LLK4G447DZ');
+  </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>九月に解ける、暑中と銀。特設ページ</title>
@@ -625,7 +634,6 @@
 
   <p class="cta-pre">── 第一部、配信中 ──</p>
 
-  <!-- 【差し替え】href を DLSite の商品URLに変える -->
   <button class="buy-btn" id="buyBtn" data-url="https://www.dlsite.com/home/work/=/product_id/RJ01623153.html">
     購入ページへ
   </button>
@@ -720,6 +728,11 @@
         if (url) {
           window.location.href = url;
         }
+        // GA4イベント送信
+        gtag('event', 'click_dlsite', {
+          'event_category': 'CTA',
+          'event_label': 'dlsite_button'
+        });
       };
 
       if (voiceAvailable) {
